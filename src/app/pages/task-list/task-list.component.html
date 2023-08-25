@@ -1,0 +1,32 @@
+<div class="container mt-3 mt-md-5">
+  <div class="card shadow">
+    <div class="card-header">
+      <h3 class="text-center">Task List</h3>
+    </div>
+    <div class="card-body">
+      <div>
+        <label for="status">Filter Task</label>
+        <select class="form-control" name="status" id="status" [(ngModel)]="status" (change)="filterStatus()">
+          <option value="All">All</option>
+          <option value="Completed">Completed</option>
+          <option value="Incomplete">Incomplete</option>
+        </select>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <th class="w-50">Title</th>
+            <th class="w-50">Mark as complete</th>
+          </thead>
+          <tbody>
+            <tr [ngClass]="{'taskComplete': task.status=='Completed'}" *ngFor="let task of taskList">
+              <td>{{ task.title }}</td>
+              <td><input class="form-check-input checkbox-lg m-0" type="checkbox"
+                  [checked]="task.status=='Completed'? true: false" (change)="markComplete(task);"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
